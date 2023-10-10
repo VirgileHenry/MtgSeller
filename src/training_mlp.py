@@ -4,7 +4,7 @@ from pandas import read_csv
 from sklearn.neural_network import MLPRegressor
 from sklearn.metrics import mean_squared_error
 from joblib import dump
-
+from sklearn.model_selection import train_test_split
 
 df = read_csv("../datasets/pca_dataset.csv")
 
@@ -18,12 +18,7 @@ X = df.drop("prices", axis=1).to_numpy()
 # now we can try to predict the prices
 # split the data into training and testing sets
 train_amount = 0.7
-train_size = int(train_amount * len(X))
-print("training on {} samples".format(train_size))
-X_train = X[:train_size]
-X_test = X[train_size:]
-y_train = y[:train_size]
-y_test = y[train_size:]
+X_train, X_test, y_train, y_test = train_test_split(X, y, train_size=train_amount)
 
 # let's try a neural network
 model = MLPRegressor(hidden_layer_sizes=(1400, 1200, 1000, 800, 600, 400, 200, 100, 40, 5), max_iter=1000000)

@@ -7,8 +7,8 @@ from sentence_transformers import SentenceTransformer
 
 # columns to keep in the final dataset
 columns = [
-    "colorIdentity","colors_x","convertedManaCost","firstPrinting","layout_x","manaCost","manaValue",
-    "name","printings","subtypes","supertypes","text","types","power_x","toughness_x",
+    "colorIdentity","colors_x","convertedManaCost","layout_x","manaCost","manaValue",
+    "name","printings","supertypes","text","types","power_x","toughness_x",
     "leadershipSkills.brawl","leadershipSkills.commander","leadershipSkills.oathbreaker","keywords_x",
     "legalities.commander","legalities.duel","legalities.legacy","legalities.oathbreaker","legalities.vintage",
     "legalities.explorer","legalities.gladiator","legalities.historic","legalities.historicbrawl",
@@ -16,9 +16,9 @@ columns = [
     "legalities.brawl","legalities.future","legalities.penny","legalities.standard","legalities.alchemy",
     "side","colorIndicator","loyalty_x","legalities.predh",
     "legalities.premodern","legalities.oldschool","hasAlternativeDeckLimit","defense",
-    "reprint","variation","set_name","digital","rarity","artist",
+    "reprint","variation","digital","rarity",
     "border_color","frame","full_art","textless","booster","story_spotlight","prices",
-    "frame_effects","watermark","produced_mana",
+    "frame_effects","watermark"
 ]
 
 # columns to apply lambda functions to
@@ -64,17 +64,14 @@ lambda_columns = [
     ["border_color", lambda x: x if type(x) == list else [x]],
     ["watermark", lambda x: x if type(x) == list else [x]],
     ["layout_x", lambda x: x if type(x) == list else [x]],
-    ["firstPrinting", lambda x: x if type(x) == list else [x]],
-    ["set_name", lambda x: x if type(x) == list else [x]],
-    ["artist", lambda x: x if type(x) == list else [x]],
     ["prices", lambda x: x["eur"]]
 ]
 
 # columns to one hot encode
 one_hot_columns = [
-    "colorIdentity","colors_x","printings","subtypes","supertypes","types","keywords_x","rarity",
-    "produced_mana", "manaCost","colorIndicator","frame_effects","border_color","watermark",
-    "layout_x","firstPrinting","set_name","artist"
+    "colorIdentity","colors_x","printings","types","keywords_x","rarity",
+    "manaCost","colorIndicator","frame_effects","border_color","watermark",
+    "layout_x",
 ]
 
 def refactor_columns(df):

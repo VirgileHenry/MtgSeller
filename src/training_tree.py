@@ -44,9 +44,7 @@ X = df.drop("prices", axis=1).to_numpy()
 
 # now we can try to predict the prices
 # split the data into training and testing sets
-train_amount = 0.4
-train_size = int(train_amount * len(X))
-print("training on {} samples".format(train_size))
+train_amount = 0.7
 X_train, X_test, y_train, y_test = train_test_split(X, y, train_size=train_amount)
 
 # let's try a neural network
